@@ -1,0 +1,4 @@
+- 👋 Hi, I’m Jerzy Cieśla
+- 👀 I’m interested in expanding my knowlage about VBA and SQL.
+- 🌱 I’m currently learning SQL and VBA for the most part because i can use both at my current work. I also learn some of HTML5 and CSS just to create webpage for my friend.
+- 📫 How to reach me :jerzyciesla95@gmail.com and also at my linkedin: www.linkedin.com/in/jerzy-cieśla-4534081ab
