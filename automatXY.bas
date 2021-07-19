@@ -1,4 +1,4 @@
-Attribute VB_Name = "testowy_1"
+Attribute VB_Name = "automat"
     Public wiersz As Variant
     Public kolumnaNazwaFirmy As Variant
     Public kolumnaNazwaPliku As Variant
@@ -48,10 +48,10 @@ Attribute VB_Name = "testowy_1"
     
     Sub tworzeniecennika()
     
-    'wy³¹czenie aktualizacji widoku okna excal podczas trwania makra
+    'wyÂ³Â¹czenie aktualizacji widoku okna excal podczas trwania makra
     Application.ScreenUpdating = False
     
-    'Aby zapobiec b³êdom usuwa sheet o nazwie pricelist jeœli taki istnieje
+    'Aby zapobiec bÂ³Ãªdom usuwa sheet o nazwie pricelist jeÅ“li taki istnieje
     On Error Resume Next
     Application.DisplayAlerts = False
     Sheets("pricelist").Delete
@@ -63,10 +63,10 @@ Attribute VB_Name = "testowy_1"
     
     'zmienna zapisuje czas rozpoczecia dzialania makra
     StartTime = Timer
-    'Œcie¿ka zapisu plików
+    'Å’cieÂ¿ka zapisu plikÃ³w
     Sciezka = "C:\cennikiautomat" & "\"
         
-    'Sta³e odpowiadaj¹ce numerom konkretnych kolumn w sheecie modu³
+    'StaÂ³e odpowiadajÂ¹ce numerom konkretnych kolumn w sheecie moduÂ³
     kolumnaNazwaPliku = 4
     kolumnaNazwaFirmy = 8
     kolumnawlacz = 10
@@ -113,89 +113,89 @@ Attribute VB_Name = "testowy_1"
     kolumnaStockIND = 51
        
     
-    'zmienna która odpowiada ka¿demu wierszowi z nazw¹ firmy (najpierw zlciza ich iloœæ)
+    'zmienna ktÃ³ra odpowiada kaÂ¿demu wierszowi z nazwÂ¹ firmy (najpierw zlciza ich iloÅ“Ã¦)
     r = Cells(Rows.Count, "D").End(xlUp).Row
     
-    'Pêtla która wykonuje siê dla ka¿dej firmy
+    'PÃªtla ktÃ³ra wykonuje siÃª dla kaÂ¿dej firmy
     For wiersz = 3 To r
     
-    'Warunek sprawdzaj¹cy czy makro dla konkretnej firmy ma byæ uruchomione
-    If Sheets("modu³").Cells(wiersz, kolumnawlacz).Value = "+" Then
+    'Warunek sprawdzajÂ¹cy czy makro dla konkretnej firmy ma byÃ¦ uruchomione
+    If Sheets("moduÂ³").Cells(wiersz, kolumnawlacz).Value = "+" Then
         
-    'Zmienna pobieraj¹ca nazwê sheetu indywidualnego z którego maj¹ byæ usuniête konkretne produkty
-    nazwasheetuIND = Sheets("modu³").Cells(wiersz, kolumnaSheetIND).Value
+    'Zmienna pobierajÂ¹ca nazwÃª sheetu indywidualnego z ktÃ³rego majÂ¹ byÃ¦ usuniÃªte konkretne produkty
+    nazwasheetuIND = Sheets("moduÂ³").Cells(wiersz, kolumnaSheetIND).Value
     
-    'Zmienna pobieraj¹ca nazwê firmy
-    komorkaznazwa = Sheets("modu³").Cells(wiersz, kolumnaNazwaFirmy)
+    'Zmienna pobierajÂ¹ca nazwÃª firmy
+    komorkaznazwa = Sheets("moduÂ³").Cells(wiersz, kolumnaNazwaFirmy)
     
-'W przypadku b³êdu uruchamia prplaceholder10durê obs³ugi b³êdów
+'W przypadku bÂ³Ãªdu uruchamia prplaceholder10durÃª obsÂ³ugi bÂ³ÃªdÃ³w
 On Error GoTo ErrHandler
         
         
-    'Makro kolejno sprawdza czy zaznaczone s¹ komórki w sheecie modu³. W przypadk uzaznaczenia ich znakiem "+" uruchamia kolejno wybrane prplaceholder10dury.
-    'Po ich zakoñczeniu wszystko zaczyna siê ponownie dla nastêpnej firmy.
+    'Makro kolejno sprawdza czy zaznaczone sÂ¹ komÃ³rki w sheecie moduÂ³. W przypadk uzaznaczenia ich znakiem "+" uruchamia kolejno wybrane prplaceholder10dury.
+    'Po ich zakoÃ±czeniu wszystko zaczyna siÃª ponownie dla nastÃªpnej firmy.
         Call kopiowanie_SL
-        If Sheets("modu³").Cells(wiersz, kolumnaplaceholder19).Value = "+" Then Call placeholder19
-        If Sheets("modu³").Cells(wiersz, kolumna1Stock).Value = "+" Then Call placeholder22
-        If Sheets("modu³").Cells(wiersz, kolumnaL2Stock).Value = "+" Then Call placeholder23
-        If Sheets("modu³").Cells(wiersz, kolumnaL3Stock).Value = "+" Then Call placeholder24
-        If Sheets("modu³").Cells(wiersz, kolumnaplaceholder25).Value = "+" Then Call placeholder25
-        If Sheets("modu³").Cells(wiersz, kolumnaColumnStock).Value = "+" Then Call ColumnStock
-        If Sheets("modu³").Cells(wiersz, kolumnaplaceholder20).Value = "+" Then Call placeholder20
-        If Sheets("modu³").Cells(wiersz, kolumnaplaceholder21).Value = "+" Then Call placeholder21
-        If Sheets("modu³").Cells(wiersz, kolumnaColumnPrice).Value = "+" Then Call ColumnPrice
-        If Sheets("modu³").Cells(wiersz, kolumnaplaceholder1).Value = "+" Then Call Usuwaplaceholder1
-        If Sheets("modu³").Cells(wiersz, kolumnaplaceholder2).Value = "+" Then Call Usuwaplaceholder2
-        If Sheets("modu³").Cells(wiersz, kolumnaplaceholder3).Value = "+" Then Call Usuwaplaceholder3
-        If Sheets("modu³").Cells(wiersz, kolumnaplaceholder4Ribbon).Value = "+" Then Call Usuwaplaceholder4Ribbon
-        If Sheets("modu³").Cells(wiersz, kolumnaplaceholder5).Value = "+" Then Call Usuwaplaceholder5
-        If Sheets("modu³").Cells(wiersz, kolumnaplaceholder12).Value = "+" Then Call Usuwaplaceholder12
-        If Sheets("modu³").Cells(wiersz, kolumnaplaceholder4).Value = "+" Then Call Usuwaplaceholder4
-        If Sheets("modu³").Cells(wiersz, kolumnaplaceholder6).Value = "+" Then Call Usuwaplaceholder6
-        If Sheets("modu³").Cells(wiersz, kolumnaplaceholder16).Value = "+" Then Call Usuwaplaceholder16
-        If Sheets("modu³").Cells(wiersz, kolumnaplaceholder7).Value = "+" Then Call Usuwaplaceholder7
-        If Sheets("modu³").Cells(wiersz, kolumnaplaceholder8).Value = "+" Then Call Usuwaplaceholder8
-        If Sheets("modu³").Cells(wiersz, kolumnaplaceholder10).Value = "+" Then Call Usuwaplaceholder10
-        If Sheets("modu³").Cells(wiersz, kolumnaplaceholder11).Value = "+" Then Call Usuwaplaceholder11
-        If Sheets("modu³").Cells(wiersz, kolumnaplaceholder15).Value = "+" Then Call Usuwaplaceholder15
-        If Sheets("modu³").Cells(wiersz, kolumnaplaceholder17).Value = "+" Then Call Usuwaplaceholder17
-        If Sheets("modu³").Cells(wiersz, kolumnaplaceholder18).Value = "+" Then Call Usuwaplaceholder18
-        If Sheets("modu³").Cells(wiersz, kolumnaplaceholder27).Value = "+" Then Call Usuwaplaceholder27
-        If Sheets("modu³").Cells(wiersz, kolumnaCzySheetIND).Value = "+" Then Call UsuwaIND
-        If Sheets("modu³").Cells(wiersz, kolumnaplaceholder4NiedoPL).Value = "+" Then Call Usuwaplaceholder4NiedoPL
-        If Sheets("modu³").Cells(wiersz, kolumnaplaceholder14).Value = "+" Then Call placeholder14
-        If Sheets("modu³").Cells(wiersz, kolumnaUsuwanieNaglowkow).Value = "+" Then Call UsuwanienNaglowkow
-        If Sheets("modu³").Cells(wiersz, kolumnaUsuwaniePustegoStocku).Value = "+" Then Call UsuwaniePustegoStocku
-        If Sheets("modu³").Cells(wiersz, kolumnaUsuwanieplaceholder12placeholder28).Value = "+" Then Call Usuwaplaceholder12placeholder28
-        If Sheets("modu³").Cells(wiersz, kolumnaUsuwanieplaceholder4NieRibbon).Value = "+" Then Call Usuwanieplaceholder4NieRibbon
-        If Sheets("modu³").Cells(wiersz, kolumnaZostawiaTylkoStockplaceholder6).Value = "+" Then Call ZostawiaTylkoStockplaceholder6
-        If Sheets("modu³").Cells(wiersz, kolumnaUsuwaplaceholder13).Value = "+" Then Call Usuwaplaceholder13
-        If Sheets("modu³").Cells(wiersz, kolumnaStockDo100).Value = "+" Then Call OgraniczDo100
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder19).Value = "+" Then Call placeholder19
+        If Sheets("moduÂ³").Cells(wiersz, kolumna1Stock).Value = "+" Then Call placeholder22
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaL2Stock).Value = "+" Then Call placeholder23
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaL3Stock).Value = "+" Then Call placeholder24
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder25).Value = "+" Then Call placeholder25
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaColumnStock).Value = "+" Then Call ColumnStock
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder20).Value = "+" Then Call placeholder20
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder21).Value = "+" Then Call placeholder21
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaColumnPrice).Value = "+" Then Call ColumnPrice
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder1).Value = "+" Then Call Usuwaplaceholder1
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder2).Value = "+" Then Call Usuwaplaceholder2
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder3).Value = "+" Then Call Usuwaplaceholder3
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder4Ribbon).Value = "+" Then Call Usuwaplaceholder4Ribbon
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder5).Value = "+" Then Call Usuwaplaceholder5
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder12).Value = "+" Then Call Usuwaplaceholder12
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder4).Value = "+" Then Call Usuwaplaceholder4
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder6).Value = "+" Then Call Usuwaplaceholder6
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder16).Value = "+" Then Call Usuwaplaceholder16
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder7).Value = "+" Then Call Usuwaplaceholder7
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder8).Value = "+" Then Call Usuwaplaceholder8
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder10).Value = "+" Then Call Usuwaplaceholder10
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder11).Value = "+" Then Call Usuwaplaceholder11
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder15).Value = "+" Then Call Usuwaplaceholder15
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder17).Value = "+" Then Call Usuwaplaceholder17
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder18).Value = "+" Then Call Usuwaplaceholder18
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder27).Value = "+" Then Call Usuwaplaceholder27
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaCzySheetIND).Value = "+" Then Call UsuwaIND
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder4NiedoPL).Value = "+" Then Call Usuwaplaceholder4NiedoPL
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder14).Value = "+" Then Call placeholder14
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaUsuwanieNaglowkow).Value = "+" Then Call UsuwanienNaglowkow
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaUsuwaniePustegoStocku).Value = "+" Then Call UsuwaniePustegoStocku
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaUsuwanieplaceholder12placeholder28).Value = "+" Then Call Usuwaplaceholder12placeholder28
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaUsuwanieplaceholder4NieRibbon).Value = "+" Then Call Usuwanieplaceholder4NieRibbon
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaZostawiaTylkoStockplaceholder6).Value = "+" Then Call ZostawiaTylkoStockplaceholder6
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaUsuwaplaceholder13).Value = "+" Then Call Usuwaplaceholder13
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaStockDo100).Value = "+" Then Call OgraniczDo100
         Call Usuwanie_puste
-        If Sheets("modu³").Cells(wiersz, kolumnaZapisXLS).Value = "+" Then Call ZapisXLS
-        If Sheets("modu³").Cells(wiersz, kolumnaZapisCSV).Value = "+" Then Call ZapisCSV
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaZapisXLS).Value = "+" Then Call ZapisXLS
+        If Sheets("moduÂ³").Cells(wiersz, kolumnaZapisCSV).Value = "+" Then Call ZapisCSV
     
     End If
     
 Next
     
-    'w³¹czenie aktualizacji widoku okna excal podczas trwania makra
+    'wÂ³Â¹czenie aktualizacji widoku okna excal podczas trwania makra
     Application.ScreenUpdating = True
     EndTime = Format((Timer - StartTime) / 86400, "hh:mm:ss")
     
-    ' Wiadomoœæ po zakoñczeniu makra wraz z czasem jaki zajê³o jego wykonanie
+    ' WiadomoÅ“Ã¦ po zakoÃ±czeniu makra wraz z czasem jaki zajÃªÂ³o jego wykonanie
     MsgBox "Gotowe. Czas trwania: " & EndTime & " minut", vbInformation
 
 
 Exit Sub
 
-'Obs³uga b³êdów
+'ObsÂ³uga bÂ³ÃªdÃ³w
 ErrHandler:
-    'Je¿eli zosta³ ju¿ utworzony sheet "pricelist" prplaceholder10dura go usunie aby nie wywo³ywaæ dalszych b³êdów
+    'JeÂ¿eli zostaÂ³ juÂ¿ utworzony sheet "pricelist" prplaceholder10dura go usunie aby nie wywoÂ³ywaÃ¦ dalszych bÂ³ÃªdÃ³w
     If ActiveSheet.Name = "pricelist" Then ActiveSheet.Delete
-    'Wyœwietla info dla jakiego cennika wyst¹pi³ b³¹d
-    MsgBox "Wyst¹pi³ bl¹d dla cennika: " & vbNewLine & komorkaznazwa & vbNewLine & "SprawdŸ poprawnoœæ wprowadzonych danych lub skontaktuj siê z administratoerm.", vbInformation
-    'Po wyœwietleniu zostanie uruchomione makro dla kolejnego cennika tak aby tylko ten na którym wyst¹pi³ b³¹d nie zsota³ stworzony
+    'WyÅ“wietla info dla jakiego cennika wystÂ¹piÂ³ bÂ³Â¹d
+    MsgBox "WystÂ¹piÂ³ blÂ¹d dla cennika: " & vbNewLine & komorkaznazwa & vbNewLine & "SprawdÅ¸ poprawnoÅ“Ã¦ wprowadzonych danych lub skontaktuj siÃª z administratoerm.", vbInformation
+    'Po wyÅ“wietleniu zostanie uruchomione makro dla kolejnego cennika tak aby tylko ten na ktÃ³rym wystÂ¹piÂ³ bÂ³Â¹d nie zsotaÂ³ stworzony
     wiersz = wiersz + 1
     Resume
 End Sub
@@ -220,8 +220,8 @@ Sub placeholder20()
     Columns("F:F").Select
     Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
         :=False, Transpose:=False
-    'Ustawienie odpowiedniego formatu walutowego, pogrubienie czcionki, i ustawienie szerokoœci kolumny
-    Columns("F:F").NumberFormat = "#,##0.00 [$€-x-euro1]"
+    'Ustawienie odpowiedniego formatu walutowego, pogrubienie czcionki, i ustawienie szerokoÅ“ci kolumny
+    Columns("F:F").NumberFormat = "#,##0.00 [$â‚¬-x-euro1]"
     Columns("F:H").ColumnWidth = 8
     Range("f4").Font.Bold = True
     
@@ -237,8 +237,8 @@ Sub placeholder21()
     Columns("F:F").Select
     Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
         :=False, Transpose:=False
-    'Ustawienie odpowiedniego formatu walutowego, pogrubienie czcionki, i ustawienie szerokoœci kolumny
-    Columns("F:F").NumberFormat = "#,##0.00 [$€-x-euro1]"
+    'Ustawienie odpowiedniego formatu walutowego, pogrubienie czcionki, i ustawienie szerokoÅ“ci kolumny
+    Columns("F:F").NumberFormat = "#,##0.00 [$â‚¬-x-euro1]"
     Columns("F:H").ColumnWidth = 8
     Range("f4").Font.Bold = True
     Range("f4").Value = "price"
@@ -249,7 +249,7 @@ Sub ColumnPrice()
     'Kopiowanie cen z kolumny wpisanej do kolumny "Wpisz symbol kolumny" i umieszczanie ich w arkuszu z nowym cennikiem
     kolumnplaceholder20IND = 14
     kolumnaColumnPrice = 13
-    nrkolumny = Sheets("modu³").Cells(wiersz, kolumnplaceholder20IND).Value
+    nrkolumny = Sheets("moduÂ³").Cells(wiersz, kolumnplaceholder20IND).Value
 
     Sheets("szablon cen").Select
     Range(Cells(1, nrkolumny), Cells(5000, nrkolumny)).Select
@@ -259,13 +259,13 @@ Sub ColumnPrice()
     Columns("F:F").Select
     Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
         :=False, Transpose:=False
-    'Ustawienie odpowiedniego formatu walutowego, pogrubienie czcionki, i ustawienie szerokoœci kolumny
-    Columns("F:F").NumberFormat = "#,##0.00 [$€-x-euro1]"
+    'Ustawienie odpowiedniego formatu walutowego, pogrubienie czcionki, i ustawienie szerokoÅ“ci kolumny
+    Columns("F:F").NumberFormat = "#,##0.00 [$â‚¬-x-euro1]"
     Columns("F:H").ColumnWidth = 8
     Range("f4").Font.Bold = True
     Range("f4").Value = "price"
     
-    ' Usuwa wiersz je¿eli w komórce z cen¹ jest wpsiane "x"
+    ' Usuwa wiersz jeÂ¿eli w komÃ³rce z cenÂ¹ jest wpsiane "x"
     ow = Cells(Rows.Count, "F").End(xlUp).Row
     For r = ow To 1 Step -1
         If Cells(r, "F").Value = "x" Then Rows(r).Delete
@@ -277,7 +277,7 @@ Sub ColumnStock()
     'Kopiowanie stocku z kolumny wpisanej do kolumny "Wpisz symbol kolumny" i umieszczanie ich arkuszu z nowym cennikiem
     kolumnaStockIND = 51
     kolumnaColumnStock = 50
-    nrkolumny = Sheets("modu³").Cells(wiersz, kolumnaStockIND).Value
+    nrkolumny = Sheets("moduÂ³").Cells(wiersz, kolumnaStockIND).Value
 
     Sheets("szablon cen").Select
     Range(Cells(1, nrkolumny), Cells(5000, nrkolumny)).Select
@@ -295,7 +295,7 @@ End Sub
 
 Sub placeholder19()
     
-    'Kopiowanie zwyk³ego stocku i umieszczanie go w arkuszu z nowym cennikiem
+    'Kopiowanie zwykÂ³ego stocku i umieszczanie go w arkuszu z nowym cennikiem
     Sheets("szablon cen").Select
     Range("H:H").Select
     Application.CutCopyMode = False
@@ -309,7 +309,7 @@ Sub placeholder19()
 End Sub
 Sub placeholder22()
     
-    'Kopiowanie Stocku zwyk³ego z ... i umieszczanie go w arkuszu z nowym cennikiem
+    'Kopiowanie Stocku zwykÂ³ego z ... i umieszczanie go w arkuszu z nowym cennikiem
     Sheets("szablon cen").Select
     Range("BN:BN").Select
     Application.CutCopyMode = False
@@ -324,7 +324,7 @@ Sub placeholder22()
 End Sub
 Sub placeholder23()
     
-    'Kopiowanie Stocku zwyk³ego z placeholder7 N i umieszczanie go w arkuszu z nowym cennikiem
+    'Kopiowanie Stocku zwykÂ³ego z placeholder7 N i umieszczanie go w arkuszu z nowym cennikiem
     Sheets("szablon cen").Select
     Range("BO:BO").Select
     Application.CutCopyMode = False
@@ -387,7 +387,7 @@ Sub Usuwaplaceholder2()
 End Sub
 Sub Usuwaplaceholder3()
     
-    'Usuwanie wszystkich placeholder18ów Spare Parts
+    'Usuwanie wszystkich placeholder18Ã³w Spare Parts
     Sheets("pricelist").Select
 
     ow = Cells(Rows.Count, "D").End(xlUp).Row
@@ -410,28 +410,28 @@ Sub Usuwaplaceholder4Ribbon()
     Next
 End Sub
 Sub Usuwaplaceholder5()
-    'Usuwa markê placeholder5 wraz za nag³ówkiem/nag³ókami
+    'Usuwa markÃª placeholder5 wraz za nagÂ³Ã³wkiem/nagÂ³Ã³kami
     Sheets("pricelist").Select
     ow = Cells(Rows.Count, "A").End(xlUp).Row
     'Usuwa placeholder5
     For r = ow To 1 Step -1
         If Cells(r, "A").Value = "placeholder5" Then Rows(r).Delete
     Next
-    ' Usuwa nag³ówek placeholder5
+    ' Usuwa nagÂ³Ã³wek placeholder5
     For r = ow To 1 Step -1
         If Cells(r, "C").Value = "placeholder5 Supplies" Then Rows(r).Resize(2).Delete
     Next
 End Sub
 Sub Usuwaplaceholder12()
     
-    'Usuwa markê placeholder12 wraz za nag³ówkiem/nag³ókami
+    'Usuwa markÃª placeholder12 wraz za nagÂ³Ã³wkiem/nagÂ³Ã³kami
     Sheets("pricelist").Select
     ow = Cells(Rows.Count, "A").End(xlUp).Row
     'Usuwa placeholder12
     For r = ow To 1 Step -1
         If Cells(r, "A").Value = "placeholder12" Then Rows(r).Delete
     Next
-    ' Usuwa nag³ówki placeholder12
+    ' Usuwa nagÂ³Ã³wki placeholder12
     For r = ow To 1 Step -1
         If Cells(r, "C").Value = "placeholder12 Color Copier Supplies" Then Rows(r).Resize(2).Delete
     Next
@@ -450,14 +450,14 @@ Sub Usuwaplaceholder12()
 End Sub
 Sub Usuwaplaceholder4()
     
-    'Usuwa markê placeholder4 wraz za nag³ówkiem/nag³ókami
+    'Usuwa markÃª placeholder4 wraz za nagÂ³Ã³wkiem/nagÂ³Ã³kami
     Sheets("pricelist").Select
     ow = Cells(Rows.Count, "A").End(xlUp).Row
     'Usuwa placeholder4
     For r = ow To 1 Step -1
         If Cells(r, "A").Value = "placeholder4" Then Rows(r).Delete
     Next
-    ' Usuwa nag³ówek placeholder4
+    ' Usuwa nagÂ³Ã³wek placeholder4
     For r = ow To 1 Step -1
         If Cells(r, "C").Value = "Original placeholder4 print supplies" Then Rows(r).Resize(2).Delete
     Next
@@ -465,14 +465,14 @@ Sub Usuwaplaceholder4()
 End Sub
 Sub Usuwaplaceholder6()
     
-    'Usuwa markê placeholder6 wraz za nag³ówkiem/nag³ókami
+    'Usuwa markÃª placeholder6 wraz za nagÂ³Ã³wkiem/nagÂ³Ã³kami
     Sheets("pricelist").Select
     ow = Cells(Rows.Count, "A").End(xlUp).Row
     'Usuwa placeholder6
     For r = ow To 1 Step -1
         If Cells(r, "A").Value = "placeholder6" Then Rows(r).Delete
     Next
-    ' Usuwa nag³ówek placeholder6
+    ' Usuwa nagÂ³Ã³wek placeholder6
     For r = ow To 1 Step -1
         If Cells(r, "C").Value = "Original placeholder6 print supplies" Then Rows(r).Resize(2).Delete
     Next
@@ -480,14 +480,14 @@ Sub Usuwaplaceholder6()
 End Sub
 Sub Usuwaplaceholder16()
     
-    'Usuwa markê placeholder9 wraz za nag³ówkiem/nag³ókami
+    'Usuwa markÃª placeholder9 wraz za nagÂ³Ã³wkiem/nagÂ³Ã³kami
     Sheets("pricelist").Select
     ow = Cells(Rows.Count, "A").End(xlUp).Row
     'Usuwa placeholder16
     For r = ow To 1 Step -1
         If Cells(r, "A").Value = "placeholder9" Then Rows(r).Delete
     Next
-    ' Usuwa nag³ówek placeholder16
+    ' Usuwa nagÂ³Ã³wek placeholder16
     For r = ow To 1 Step -1
         If Cells(r, "C").Value = "Original placeholder9 print supplies" Then Rows(r).Resize(2).Delete
     Next
@@ -495,14 +495,14 @@ Sub Usuwaplaceholder16()
 End Sub
 Sub Usuwaplaceholder7()
 
-    'Usuwa markê placeholder7 wraz za nag³ówkiem/nag³ókami
+    'Usuwa markÃª placeholder7 wraz za nagÂ³Ã³wkiem/nagÂ³Ã³kami
     Sheets("pricelist").Select
     ow = Cells(Rows.Count, "A").End(xlUp).Row
     'Usuwa placeholder7
     For r = ow To 1 Step -1
         If Cells(r, "A").Value = "placeholder7" Then Rows(r).Delete
     Next
-    ' Usuwa nag³ówek placeholder7
+    ' Usuwa nagÂ³Ã³wek placeholder7
     For r = ow To 1 Step -1
         If Cells(r, "C").Value = "Original placeholder7 print supplies" Then Rows(r).Resize(2).Delete
     Next
@@ -510,14 +510,14 @@ Sub Usuwaplaceholder7()
 End Sub
 Sub Usuwaplaceholder8()
 
-    'Usuwa markê placeholder8 wraz za nag³ówkiem/nag³ókami
+    'Usuwa markÃª placeholder8 wraz za nagÂ³Ã³wkiem/nagÂ³Ã³kami
     Sheets("pricelist").Select
     ow = Cells(Rows.Count, "A").End(xlUp).Row
     'Usuwa placeholder8
     For r = ow To 1 Step -1
         If Cells(r, "A").Value = "placeholder8" Then Rows(r).Delete
     Next
-    ' Usuwa nag³ówek placeholder8
+    ' Usuwa nagÂ³Ã³wek placeholder8
     For r = ow To 1 Step -1
         If Cells(r, "C").Value = "Original placeholder8 print supplies" Then Rows(r).Resize(2).Delete
     Next
@@ -525,14 +525,14 @@ Sub Usuwaplaceholder8()
 End Sub
 Sub Usuwaplaceholder10()
 
-    'Usuwa markê placeholder10 wraz za nag³ówkiem/nag³ókami
+    'Usuwa markÃª placeholder10 wraz za nagÂ³Ã³wkiem/nagÂ³Ã³kami
     Sheets("pricelist").Select
     ow = Cells(Rows.Count, "A").End(xlUp).Row
     'Usuwa placeholder10
     For r = ow To 1 Step -1
         If Cells(r, "A").Value = "placeholder10" Then Rows(r).Delete
     Next
-    ' Usuwa nag³ówek placeholder10
+    ' Usuwa nagÂ³Ã³wek placeholder10
     For r = ow To 1 Step -1
         If Cells(r, "C").Value = "placeholder10 Print Supplies" Then Rows(r).Resize(2).Delete
     Next
@@ -540,14 +540,14 @@ Sub Usuwaplaceholder10()
 End Sub
 Sub Usuwaplaceholder11()
 
-    'Usuwa markê placeholder11 wraz za nag³ówkiem/nag³ókami
+    'Usuwa markÃª placeholder11 wraz za nagÂ³Ã³wkiem/nagÂ³Ã³kami
     Sheets("pricelist").Select
     ow = Cells(Rows.Count, "A").End(xlUp).Row
     'Usuwa placeholder11
     For r = ow To 1 Step -1
         If Cells(r, "A").Value = "placeholder11" Then Rows(r).Delete
     Next
-    ' Usuwa nag³ówek placeholder11
+    ' Usuwa nagÂ³Ã³wek placeholder11
     For r = ow To 1 Step -1
         If Cells(r, "C").Value = "placeholder11 Supplies" Then Rows(r).Resize(2).Delete
     Next
@@ -555,14 +555,14 @@ Sub Usuwaplaceholder11()
 End Sub
 Sub Usuwaplaceholder15()
 
-    'Usuwa markê placeholder15 wraz za nag³ówkiem/nag³ókami
+    'Usuwa markÃª placeholder15 wraz za nagÂ³Ã³wkiem/nagÂ³Ã³kami
     Sheets("pricelist").Select
     ow = Cells(Rows.Count, "A").End(xlUp).Row
     'Usuwa placeholder15
     For r = ow To 1 Step -1
         If Cells(r, "A").Value = "placeholder15" Then Rows(r).Delete
     Next
-    ' Usuwa nag³ówek placeholder15
+    ' Usuwa nagÂ³Ã³wek placeholder15
     For r = ow To 1 Step -1
         If Cells(r, "C").Value = "Original placeholder15 Supplies" Then Rows(r).Resize(2).Delete
     Next
@@ -570,14 +570,14 @@ Sub Usuwaplaceholder15()
 End Sub
 Sub Usuwaplaceholder17()
 
-    'Usuwa markê placeholder17 wraz za nag³ówkiem/nag³ókami
+    'Usuwa markÃª placeholder17 wraz za nagÂ³Ã³wkiem/nagÂ³Ã³kami
     Sheets("pricelist").Select
     ow = Cells(Rows.Count, "A").End(xlUp).Row
     'Usuwa placeholder17
     For r = ow To 1 Step -1
         If Cells(r, "A").Value = "placeholder17" Then Rows(r).Delete
     Next
-    ' Usuwa nag³ówek placeholder17
+    ' Usuwa nagÂ³Ã³wek placeholder17
     For r = ow To 1 Step -1
         If Cells(r, "C").Value = "Original placeholder17 print supplies" Then Rows(r).Resize(2).Delete
     Next
@@ -585,14 +585,14 @@ Sub Usuwaplaceholder17()
 End Sub
 Sub Usuwaplaceholder18()
 
-    'Usuwa markê placeholder18 wraz za nag³ówkiem/nag³ókami
+    'Usuwa markÃª placeholder18 wraz za nagÂ³Ã³wkiem/nagÂ³Ã³kami
     Sheets("pricelist").Select
     ow = Cells(Rows.Count, "A").End(xlUp).Row
     'Usuwa placeholder18
     For r = ow To 1 Step -1
         If Cells(r, "A").Value = "placeholder18" Then Rows(r).Delete
     Next
-    ' Usuwa nag³ówek placeholder18
+    ' Usuwa nagÂ³Ã³wek placeholder18
     For r = ow To 1 Step -1
         If Cells(r, "C").Value = "Original placeholder18 print supplies" Then Rows(r).Resize(2).Delete
     Next
@@ -600,7 +600,7 @@ Sub Usuwaplaceholder18()
 End Sub
 Sub Usuwaplaceholder27()
 
-    'Usuwa markê placeholder27 wraz za nag³ówkiem/nag³ókami
+    'Usuwa markÃª placeholder27 wraz za nagÂ³Ã³wkiem/nagÂ³Ã³kami
     Sheets("pricelist").Select
     ow = Cells(Rows.Count, "A").End(xlUp).Row
     'Usuwa placeholder27
@@ -611,7 +611,7 @@ Sub Usuwaplaceholder27()
     For r = ow To 1 Step -1
         If Cells(r, "A").Value = "placeholder27 Spare Parts" Then Rows(r).Delete
     Next
-    ' Usuwa nag³ówek placeholder27
+    ' Usuwa nagÂ³Ã³wek placeholder27
     For r = ow To 1 Step -1
         If Cells(r, "C").Value = "placeholder27 Color Machines" Or Cells(r, "C").Value = "placeholder27 B&W" Or Cells(r, "C").Value = "placeholder27 placeholder29 models" Or Cells(r, "C").Value = "placeholder27 Wide Format" Or Cells(r, "C").Value = "placeholder27 Original Spare Parts " Or Cells(r, "C").Value = "PLEASE NOTE: Prices and leadtime are to be confirmed before ordering" Then Rows(r).Resize(2).Delete
     Next
@@ -635,7 +635,7 @@ Sub UsuwaIND()
     Range("L:L").Clear
 End Sub
 Sub ZapisXLS()
-    Sheets("modu³").Select
+    Sheets("moduÂ³").Select
     Cells(wiersz, kolumnaNazwaPliku).Copy
     Sheets("pricelist").Select
     Range("H1").Select
@@ -655,10 +655,10 @@ Sub ZapisXLS()
     ActiveWorkbook.Close
     ActiveSheet.Delete
     Application.DisplayAlerts = True
-    Sheets("modu³").Select
+    Sheets("moduÂ³").Select
 End Sub
 Sub ZapisCSV()
-    Sheets("modu³").Select
+    Sheets("moduÂ³").Select
     Cells(wiersz, kolumnaNazwaPliku).Copy
     Sheets("pricelist").Select
     Range("H1").Select
@@ -678,7 +678,7 @@ Sub ZapisCSV()
     ActiveWorkbook.Close
     ActiveSheet.Delete
     Application.DisplayAlerts = True
-    Sheets("modu³").Select
+    Sheets("moduÂ³").Select
 End Sub
 Sub Usuwaplaceholder4NiedoPL()
     
@@ -722,95 +722,95 @@ Sub TestInputs()
     
     For wiersz = 3 To 100
     
-        'Sprawdza poprawnoœæ cen
-        komorkaznazwa = Sheets("modu³").Cells(wiersz, kolumnaNazwaFirmy)
-            If Sheets("modu³").Cells(wiersz, kolumnawlacz).Value = "+" Then
-                If Sheets("modu³").Cells(wiersz, kolumnaplaceholder20).Value = "+" Then
-                ElseIf Sheets("modu³").Cells(wiersz, kolumnaplaceholder21).Value = "+" Then
-                ElseIf Sheets("modu³").Cells(wiersz, kolumnaColumnPrice).Value = "+" Then
-                ElseIf Sheets("modu³").Cells(wiersz, kolumnaplaceholder14).Value = "+" Then
-                Else: MsgBox "Ceny nie okreœlone dla: " & komorkaznazwa, vbInformation
+        'Sprawdza poprawnoÅ“Ã¦ cen
+        komorkaznazwa = Sheets("moduÂ³").Cells(wiersz, kolumnaNazwaFirmy)
+            If Sheets("moduÂ³").Cells(wiersz, kolumnawlacz).Value = "+" Then
+                If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder20).Value = "+" Then
+                ElseIf Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder21).Value = "+" Then
+                ElseIf Sheets("moduÂ³").Cells(wiersz, kolumnaColumnPrice).Value = "+" Then
+                ElseIf Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder14).Value = "+" Then
+                Else: MsgBox "Ceny nie okreÅ“lone dla: " & komorkaznazwa, vbInformation
             End If
             End If
-        'Sprawdza poparawnoœæ stocków
-            If Sheets("modu³").Cells(wiersz, kolumnawlacz).Value = "+" Then
-                If Sheets("modu³").Cells(wiersz, kolumnaplaceholder19).Value = "+" Then
-                ElseIf Sheets("modu³").Cells(wiersz, kolumna1Stock).Value = "+" Then
-                ElseIf Sheets("modu³").Cells(wiersz, kolumnaL2Stock).Value = "+" Then
-                ElseIf Sheets("modu³").Cells(wiersz, kolumnaL3Stock).Value = "+" Then
-                ElseIf Sheets("modu³").Cells(wiersz, kolumnaplaceholder25).Value = "+" Then
-                ElseIf Sheets("modu³").Cells(wiersz, kolumnaColumnStock).Value = "+" Then
-                Else: MsgBox "Stock nie okreœlony dla: " & komorkaznazwa, vbInformation
+        'Sprawdza poparawnoÅ“Ã¦ stockÃ³w
+            If Sheets("moduÂ³").Cells(wiersz, kolumnawlacz).Value = "+" Then
+                If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder19).Value = "+" Then
+                ElseIf Sheets("moduÂ³").Cells(wiersz, kolumna1Stock).Value = "+" Then
+                ElseIf Sheets("moduÂ³").Cells(wiersz, kolumnaL2Stock).Value = "+" Then
+                ElseIf Sheets("moduÂ³").Cells(wiersz, kolumnaL3Stock).Value = "+" Then
+                ElseIf Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder25).Value = "+" Then
+                ElseIf Sheets("moduÂ³").Cells(wiersz, kolumnaColumnStock).Value = "+" Then
+                Else: MsgBox "Stock nie okreÅ“lony dla: " & komorkaznazwa, vbInformation
             End If
             End If
         'Sprawdza czy wpisana jest nazwa sheet IND.
-            If Sheets("modu³").Cells(wiersz, kolumnawlacz).Value = "+" Then
-                If Sheets("modu³").Cells(wiersz, kolumnaCzySheetIND).Value = "+" Then
-                If Sheets("modu³").Cells(wiersz, kolumnaSheetIND) = "" Then MsgBox "Sheet IND. nie okreœlony dla: " & komorkaznazwa, vbInformation
+            If Sheets("moduÂ³").Cells(wiersz, kolumnawlacz).Value = "+" Then
+                If Sheets("moduÂ³").Cells(wiersz, kolumnaCzySheetIND).Value = "+" Then
+                If Sheets("moduÂ³").Cells(wiersz, kolumnaSheetIND) = "" Then MsgBox "Sheet IND. nie okreÅ“lony dla: " & komorkaznazwa, vbInformation
             End If
             End If
         'Sprawdza czy wpisana jest kolumna z cenami
-            If Sheets("modu³").Cells(wiersz, kolumnawlacz).Value = "+" Then
-                If Sheets("modu³").Cells(wiersz, kolumnaColumnPrice).Value = "+" Then
-                If Sheets("modu³").Cells(wiersz, kolumnplaceholder20IND) = "" Then MsgBox "Sheet IND. nie okreœlony dla: " & komorkaznazwa, vbInformation
+            If Sheets("moduÂ³").Cells(wiersz, kolumnawlacz).Value = "+" Then
+                If Sheets("moduÂ³").Cells(wiersz, kolumnaColumnPrice).Value = "+" Then
+                If Sheets("moduÂ³").Cells(wiersz, kolumnplaceholder20IND) = "" Then MsgBox "Sheet IND. nie okreÅ“lony dla: " & komorkaznazwa, vbInformation
             End If
             End If
         'Sprawdza czy wpisany jest kolumna ze stockiem
-            If Sheets("modu³").Cells(wiersz, kolumnawlacz).Value = "+" Then
-                If Sheets("modu³").Cells(wiersz, kolumnaColumnStock).Value = "+" Then
-                If Sheets("modu³").Cells(wiersz, kolumnaStockIND) = "" Then MsgBox "Sheet IND. nie okreœlony dla: " & komorkaznazwa, vbInformation
+            If Sheets("moduÂ³").Cells(wiersz, kolumnawlacz).Value = "+" Then
+                If Sheets("moduÂ³").Cells(wiersz, kolumnaColumnStock).Value = "+" Then
+                If Sheets("moduÂ³").Cells(wiersz, kolumnaStockIND) = "" Then MsgBox "Sheet IND. nie okreÅ“lony dla: " & komorkaznazwa, vbInformation
             End If
             End If
         'Sprawdza czy nie ma zaznaczonych dwuch cen
-            If Sheets("modu³").Cells(wiersz, kolumnawlacz).Value = "+" Then
-                If Sheets("modu³").Cells(wiersz, kolumnaplaceholder20).Value = "+" And Sheets("modu³").Cells(wiersz, kolumnaplaceholder21).Value = "+" _
-                Or Sheets("modu³").Cells(wiersz, kolumnaplaceholder20).Value = "+" And Sheets("modu³").Cells(wiersz, kolumnaColumnPrice).Value = "+" _
-                Or Sheets("modu³").Cells(wiersz, kolumnaplaceholder21).Value = "+" And Sheets("modu³").Cells(wiersz, kolumnaColumnPrice).Value = "+" _
-                Or Sheets("modu³").Cells(wiersz, kolumnaplaceholder20).Value = "+" And Sheets("modu³").Cells(wiersz, kolumnaplaceholder14).Value = "+" _
-                Or Sheets("modu³").Cells(wiersz, kolumnaplaceholder21).Value = "+" And Sheets("modu³").Cells(wiersz, kolumnaplaceholder14).Value = "+" _
-                Or Sheets("modu³").Cells(wiersz, kolumnaColumnPrice).Value = "+" And Sheets("modu³").Cells(wiersz, kolumnaplaceholder14).Value = "+" _
+            If Sheets("moduÂ³").Cells(wiersz, kolumnawlacz).Value = "+" Then
+                If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder20).Value = "+" And Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder21).Value = "+" _
+                Or Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder20).Value = "+" And Sheets("moduÂ³").Cells(wiersz, kolumnaColumnPrice).Value = "+" _
+                Or Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder21).Value = "+" And Sheets("moduÂ³").Cells(wiersz, kolumnaColumnPrice).Value = "+" _
+                Or Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder20).Value = "+" And Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder14).Value = "+" _
+                Or Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder21).Value = "+" And Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder14).Value = "+" _
+                Or Sheets("moduÂ³").Cells(wiersz, kolumnaColumnPrice).Value = "+" And Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder14).Value = "+" _
                 Then MsgBox "Cena wprowadzona dwukrotnie dla: " & komorkaznazwa, vbInformation
 
             End If
-            If Sheets("modu³").Cells(wiersz, kolumnawlacz).Value = "+" Then
-                If Sheets("modu³").Cells(wiersz, kolumnaColumnPrice).Value = "+" And Sheets("modu³").Cells(wiersz, kolumnplaceholder20IND).Value = "" _
-                Then MsgBox "Okreœl kolumnê w Price IND. dla : " & komorkaznazwa, vbInformation
+            If Sheets("moduÂ³").Cells(wiersz, kolumnawlacz).Value = "+" Then
+                If Sheets("moduÂ³").Cells(wiersz, kolumnaColumnPrice).Value = "+" And Sheets("moduÂ³").Cells(wiersz, kolumnplaceholder20IND).Value = "" _
+                Then MsgBox "OkreÅ“l kolumnÃª w Price IND. dla : " & komorkaznazwa, vbInformation
             End If
     
-        'Sprawdza czy nie ma zaznaczonych dwóch stocków
-            If Sheets("modu³").Cells(wiersz, kolumnawlacz).Value = "+" Then
-                If Sheets("modu³").Cells(wiersz, kolumnaplaceholder19).Value = "+" And Sheets("modu³").Cells(wiersz, kolumna1Stock).Value = "+" _
-                Or Sheets("modu³").Cells(wiersz, kolumnaplaceholder19).Value = "+" And Sheets("modu³").Cells(wiersz, kolumnaL2Stock).Value = "+" _
-                Or Sheets("modu³").Cells(wiersz, kolumnaplaceholder19).Value = "+" And Sheets("modu³").Cells(wiersz, kolumnaColumnStock).Value = "+" _
-                Or Sheets("modu³").Cells(wiersz, kolumnaplaceholder19).Value = "+" And Sheets("modu³").Cells(wiersz, kolumnaL3Stock).Value = "+" _
-                Or Sheets("modu³").Cells(wiersz, kolumnaplaceholder19).Value = "+" And Sheets("modu³").Cells(wiersz, kolumnaplaceholder25).Value = "+" _
-                Or Sheets("modu³").Cells(wiersz, kolumna1Stock).Value = "+" And Sheets("modu³").Cells(wiersz, kolumnaL2Stock).Value = "+" _
-                Or Sheets("modu³").Cells(wiersz, kolumna1Stock).Value = "+" And Sheets("modu³").Cells(wiersz, kolumnaL3Stock).Value = "+" _
-                Or Sheets("modu³").Cells(wiersz, kolumna1Stock).Value = "+" And Sheets("modu³").Cells(wiersz, kolumnaplaceholder25).Value = "+" _
-                Or Sheets("modu³").Cells(wiersz, kolumna1Stock).Value = "+" And Sheets("modu³").Cells(wiersz, kolumnaColumnStock).Value = "+" _
-                Or Sheets("modu³").Cells(wiersz, kolumnaL2Stock).Value = "+" And Sheets("modu³").Cells(wiersz, kolumnaL3Stock).Value = "+" _
-                Or Sheets("modu³").Cells(wiersz, kolumnaL2Stock).Value = "+" And Sheets("modu³").Cells(wiersz, kolumnaplaceholder25).Value = "+" _
-                Or Sheets("modu³").Cells(wiersz, kolumnaL2Stock).Value = "+" And Sheets("modu³").Cells(wiersz, kolumnaColumnStock).Value = "+" _
-                Or Sheets("modu³").Cells(wiersz, kolumnaL3Stock).Value = "+" And Sheets("modu³").Cells(wiersz, kolumnaplaceholder25).Value = "+" _
-                Or Sheets("modu³").Cells(wiersz, kolumnaL3Stock).Value = "+" And Sheets("modu³").Cells(wiersz, kolumnaColumnStock).Value = "+" _
-                Or Sheets("modu³").Cells(wiersz, kolumnaColumnStock).Value = "+" And Sheets("modu³").Cells(wiersz, kolumnaplaceholder25).Value = "+" _
+        'Sprawdza czy nie ma zaznaczonych dwÃ³ch stockÃ³w
+            If Sheets("moduÂ³").Cells(wiersz, kolumnawlacz).Value = "+" Then
+                If Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder19).Value = "+" And Sheets("moduÂ³").Cells(wiersz, kolumna1Stock).Value = "+" _
+                Or Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder19).Value = "+" And Sheets("moduÂ³").Cells(wiersz, kolumnaL2Stock).Value = "+" _
+                Or Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder19).Value = "+" And Sheets("moduÂ³").Cells(wiersz, kolumnaColumnStock).Value = "+" _
+                Or Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder19).Value = "+" And Sheets("moduÂ³").Cells(wiersz, kolumnaL3Stock).Value = "+" _
+                Or Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder19).Value = "+" And Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder25).Value = "+" _
+                Or Sheets("moduÂ³").Cells(wiersz, kolumna1Stock).Value = "+" And Sheets("moduÂ³").Cells(wiersz, kolumnaL2Stock).Value = "+" _
+                Or Sheets("moduÂ³").Cells(wiersz, kolumna1Stock).Value = "+" And Sheets("moduÂ³").Cells(wiersz, kolumnaL3Stock).Value = "+" _
+                Or Sheets("moduÂ³").Cells(wiersz, kolumna1Stock).Value = "+" And Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder25).Value = "+" _
+                Or Sheets("moduÂ³").Cells(wiersz, kolumna1Stock).Value = "+" And Sheets("moduÂ³").Cells(wiersz, kolumnaColumnStock).Value = "+" _
+                Or Sheets("moduÂ³").Cells(wiersz, kolumnaL2Stock).Value = "+" And Sheets("moduÂ³").Cells(wiersz, kolumnaL3Stock).Value = "+" _
+                Or Sheets("moduÂ³").Cells(wiersz, kolumnaL2Stock).Value = "+" And Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder25).Value = "+" _
+                Or Sheets("moduÂ³").Cells(wiersz, kolumnaL2Stock).Value = "+" And Sheets("moduÂ³").Cells(wiersz, kolumnaColumnStock).Value = "+" _
+                Or Sheets("moduÂ³").Cells(wiersz, kolumnaL3Stock).Value = "+" And Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder25).Value = "+" _
+                Or Sheets("moduÂ³").Cells(wiersz, kolumnaL3Stock).Value = "+" And Sheets("moduÂ³").Cells(wiersz, kolumnaColumnStock).Value = "+" _
+                Or Sheets("moduÂ³").Cells(wiersz, kolumnaColumnStock).Value = "+" And Sheets("moduÂ³").Cells(wiersz, kolumnaplaceholder25).Value = "+" _
                 Then MsgBox "Stock wprowadzony kilkukrotnie dla: " & komorkaznazwa, vbInformation
             End If
     Next
 
-    MsgBox "Nie wykryto wiêcej b³êdów: ", vbInformation
+    MsgBox "Nie wykryto wiÃªcej bÂ³ÃªdÃ³w: ", vbInformation
 End Sub
 Sub UsuwanieSheetu()
     
     Application.DisplayAlerts = False
     Sheets("pricelist").Select
     ActiveSheet.Delete
-    Sheets("modu³").Select
+    Sheets("moduÂ³").Select
     Application.DisplayAlerts = True
 
 End Sub
 Sub Usuwanie_puste()
-'Usuwa wiersze pod pustymi nag³ówkami
+'Usuwa wiersze pod pustymi nagÂ³Ã³wkami
 ow = Cells(Rows.Count, "F").End(xlUp).Row
 For r = ow To 5 Step -1
     If Cells(r, "C").Text = "" And Cells(r + 1, "C").Value = "" Then Rows(r).Delete
@@ -827,14 +827,14 @@ Sub placeholder14()
     Columns("F:F").Select
     Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
         :=False, Transpose:=False
-    Columns("F:F").NumberFormat = "#,##0.00 [$€-x-euro1]"
+    Columns("F:F").NumberFormat = "#,##0.00 [$â‚¬-x-euro1]"
     Columns("F:H").ColumnWidth = 8
     Range("f4").Font.Bold = True
     Range("f4").Value = "price"
     
 End Sub
 Sub UsuwanienNaglowkow()
-' Usuwa wszystkie nag³ówki
+' Usuwa wszystkie nagÂ³Ã³wki
 ow = Cells(Rows.Count, "C").End(xlUp).Row
 For r = ow To 4 Step -1
     If Cells(r, "C") = "placeholder5 Supplies" Or Cells(r, "C").Value = "Original placeholder6 print supplies" _
@@ -891,14 +891,14 @@ Next
 End Sub
 Sub Usuwaplaceholder13()
     ow = Cells(Rows.Count, "A").End(xlUp).Row
-    'Znajduje komórkê z placeholder27 placeholder29 models i usuwa wszystko co jest pod ni¹ a¿ do znalezienia pustej komórki
+    'Znajduje komÃ³rkÃª z placeholder27 placeholder29 models i usuwa wszystko co jest pod niÂ¹ aÂ¿ do znalezienia pustej komÃ³rki
     For r = 1 To 3000
         If Cells(r, "C").Value = "placeholder27 placeholder29 models" And Cells(r + 1, "A") <> "" Then
         Rows(r + 1).Delete
         r = r - 1
         End If
     Next
-    'Usuwa nag³ówek placeholder27 placeholder29 models i pust¹ komórkê pod nim
+    'Usuwa nagÂ³Ã³wek placeholder27 placeholder29 models i pustÂ¹ komÃ³rkÃª pod nim
     For r = ow To 1 Step -1
         If Cells(r, "C").Value = "placeholder27 placeholder29 models" Then Rows(r).Resize(2).Delete
     Next
@@ -921,7 +921,7 @@ End Sub
 Sub OgraniczDo100()
 
 
-' Ogranicza stock do wartoœci 100
+' Ogranicza stock do wartoÅ“ci 100
 ow = Cells(Rows.Count, "A").End(xlUp).Row
 For r = ow To 6 Step -1
     If Cells(r, "G").Value > 100 Then Cells(r, "G").Value = 100
